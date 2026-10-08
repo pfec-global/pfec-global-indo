@@ -14,18 +14,26 @@ const points = [
 // Placeholder copy from the Figma file: replace with real student testimonials.
 const testimonials = [
   {
-    photo: "testimonial_2.png",
+    photo: "Abdul-Deriya.png",
     quote:
-      "Partnering with organization was one of the best decisions we’ve made for our business. Their website template is sleek, easy to customize, and optimizes performance on all devices. Our customers have been praising the new design, and we’ve noticed improved engagement metrics across the board.",
-    name: "Michael Turner",
-    role: "Product Manager at CloudSync",
+      "My name is Abdul Deriya, and I recently received my Dubai student visa. I would like to give special thanks to PFEC Global for supporting me throughout the entire process, from counselling to visa approval. I visited many local consultancies, but I did not receive the proper guidance I was looking for. am very satisfied with the support and professionalism of the PFEC counsellor team.",
+    name: "Abdul Deriya",
+    role: "Manipal Academy of Higher Education - Dubai Campus",
   },
   {
-    photo: "testimonial_1.png",
+    photo: "Giash-Uddin.png",
     quote:
-      "Partnering with organization was one of the best decisions we’ve made for our business. Their website template is sleek, easy to customize, and optimizes performance on all devices. Our customers have been praising the new design, and we’ve noticed improved engagement metrics across the board.",
-    name: "Michael Turner",
-    role: "Product Manager at CloudSync",
+      "I had a great experience with Azman Salid from PFEC Global during my Australian student visa process. They carefully guided me through every step, ensured all documents were accurate, and handled the process with great attention to detail. Their patience, dedication, and consistent support made everything much easier and stress-free. I highly recommend PFEC Global.",
+    name: "Giash Uddin",
+    role: "RMIT University - Bachelor of Engineering (Mechanical)",
+  },
+
+   {
+    photo: "SACHINI.png",
+    quote:
+      "I had a very positive experience with PFEC Global Sri Lanka during my Australian student visa process. They handled my application with great professionalism and dedication from start to finish. My counselor guided me step by step, explained every detail clearly, and was always available whenever I had questions. The whole process was smooth and completely stress-free.",
+    name: "SACHINI THISHADI WEERASINGHE & Spouse",
+    role: "Murdoch University - Master of Engineering (Practice)",
   },
 ];
 

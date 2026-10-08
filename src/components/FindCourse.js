@@ -121,7 +121,7 @@ export default function FindCourse() {
             Sounds good? Join us for a free instant profile assessment today!
           </p>
 
-          <a href="#" className="group mt-5 inline-flex items-center">
+          <a href="#" className="group mt-5 inline-flex items-center pop-up">
             <span className="rounded-full bg-brand px-6 py-3 text-base font-semibold text-white">
               Book Free Consultation
             </span>

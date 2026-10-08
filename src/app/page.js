@@ -10,6 +10,7 @@ import Affiliations from "@/components/Affiliations";
 import Testimonials from "@/components/Testimonials";
 import Journey from "@/components/Journey";
 import Consultation from "@/components/Consultation";
+import ConsultationPopup from "@/components/ConsultationPopup";
 import Footer from "@/components/Footer";
 import BackToTop from "@/components/BackToTop";
 import Reveal from "@/components/Reveal";
@@ -52,7 +53,9 @@ export default function Home() {
         <Reveal id="consultation">
           <Consultation />
         </Reveal>
+       
       </main>
+      <ConsultationPopup />
       <Reveal>
         <Footer />
       </Reveal>

@@ -97,7 +97,7 @@ export default function Hero() {
           href="#"
           className="group order-2 mt-7 inline-flex items-center justify-self-start"
         >
-          <span className="whitespace-nowrap rounded-full bg-brand px-5 py-3.5 font-poppins text-[15px] font-bold text-white sm:px-6 sm:text-xl xl:py-3.5 xl:text-2xl">
+          <span className="whitespace-nowrap rounded-full bg-brand px-5 py-3.5 font-poppins text-[15px] font-bold text-white sm:px-6 sm:text-xl xl:py-3.5 xl:text-2xl pop-up">
             Book Free Consultation
           </span>
           <span className="flex aspect-square h-[52px] items-center justify-center rounded-full bg-accent transition-transform group-hover:translate-x-1 sm:h-14 xl:h-[3.75rem]">

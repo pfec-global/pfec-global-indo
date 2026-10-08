@@ -127,7 +127,7 @@ export default function Aspirations() {
               <br />
               Abroad Dreams into Reality?
             </p>
-            <div className="w-full text-center sm:w-auto">
+            <div className="w-full text-center sm:w-auto pop-up">
               <a
                 href="#"
                 className="block whitespace-nowrap rounded-xl bg-accent px-4 py-3.5 text-base font-semibold sm:inline-block sm:px-10 sm:py-4 sm:text-lg text-white hover:opacity-90 xl:text-xl"
