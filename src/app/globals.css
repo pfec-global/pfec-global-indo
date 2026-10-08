@@ -8,6 +8,63 @@
   --font-titan: var(--font-titan-one);
   --font-bebas: var(--font-bebas-neue);
   --font-poppins: var(--font-poppins);
+  --animate-float: float 3.5s ease-in-out infinite;
+  --animate-ring: ring 4s ease-in-out infinite;
+  --animate-bob: bob 4s ease-in-out infinite;
+  --animate-hop: hop 5s ease-in-out infinite;
+  --animate-breathe: breathe 7s ease-in-out infinite;
+
+  @keyframes float {
+    0%,
+    100% {
+      transform: translateY(0) rotate(0deg);
+    }
+    50% {
+      transform: translateY(-28%) rotate(6deg);
+    }
+  }
+
+  @keyframes bob {
+    0%,
+    100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-4%);
+    }
+  }
+
+  @keyframes hop {
+    0%,
+    100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-10%);
+    }
+  }
+
+  @keyframes breathe {
+    0%,
+    100% {
+      transform: scale(1);
+    }
+    50% {
+      transform: scale(1.025);
+    }
+  }
+
+  @keyframes ring {
+    0%,
+    100% {
+      transform: scale(1);
+      opacity: 1;
+    }
+    50% {
+      transform: scale(1.06);
+      opacity: 0.45;
+    }
+  }
 }
 
 /* Desktop is drawn on a 1900px Figma frame: scale the root font size with the

@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Reveal from "./Reveal";
 
 const ART = "/images/aspirations";
 
@@ -17,12 +18,12 @@ const steps = [
   {
     title: ["Applications & Other", "Documentation Process"],
     text: "From applications to SOPs and supporting documents, we guide you through every requirement carefully to help you submit with confidence and accuracy.",
-    position: "xl:right-0 xl:top-0 xl:items-end xl:text-right",
+    position: "xl:right-0 xl:top-0",
   },
   {
     title: ["Visa Assistance &", "Pre Departure Guidance"],
     text: "Get step-by-step support for your visa process along with practical guidance to prepare for life abroad before you take off.",
-    position: "xl:right-[5.2rem] xl:top-[17rem] xl:items-end xl:text-right",
+    position: "xl:right-[5.2rem] xl:top-[17rem]",
   },
 ];
 
@@ -49,21 +50,23 @@ export default function Aspirations() {
                 alt=""
                 width={1410}
                 height={1410}
-                className="absolute inset-0 h-full w-full"
+                style={{ animationDelay: "-2.6s" }}
+                className="absolute inset-0 h-full w-full motion-safe:animate-ring"
               />
               <Image
                 src={`${ART}/Ellipse 5.png`}
                 alt=""
                 width={1222}
                 height={1222}
-                className="absolute inset-0 m-auto h-[86.7%] w-[86.7%]"
+                style={{ animationDelay: "-1.3s" }}
+                className="absolute inset-0 m-auto h-[86.7%] w-[86.7%] motion-safe:animate-ring"
               />
               <Image
                 src={`${ART}/Ellipse 6.png`}
                 alt=""
                 width={1018}
                 height={1018}
-                className="absolute inset-0 m-auto h-[72.2%] w-[72.2%]"
+                className="absolute inset-0 m-auto h-[72.2%] w-[72.2%] motion-safe:animate-ring"
               />
               <Image
                 src={`${ART}/Vector.png`}
@@ -77,7 +80,7 @@ export default function Aspirations() {
                 alt=""
                 width={328}
                 height={328}
-                className="absolute left-[7.7%] top-[1%] h-auto w-[23.7%]"
+                className="absolute left-[7.7%] top-[1%] h-auto w-[23.7%] motion-safe:animate-[spin_18s_linear_infinite]"
               />
               <Image
                 src={`${ART}/Indonesian graduate 1.png`}
@@ -85,45 +88,53 @@ export default function Aspirations() {
                 width={988}
                 height={1158}
                 sizes="(min-width: 1280px) 30vw, 26rem"
-                className="absolute -top-[5.2%] left-[13.5%] h-auto w-[70%]"
+                className="absolute -top-[5.2%] left-[13.5%] h-auto w-[70%] origin-bottom motion-safe:animate-breathe"
               />
             </div>
           </div>
 
           <ol className="relative z-10 grid gap-5 sm:grid-cols-2 xl:static xl:block">
             {steps.map(({ title, text, position }, i) => (
-              <li
+              <Reveal
+                as="li"
                 key={title[0]}
-                className={`flex flex-col rounded-br-[1.5rem] rounded-tl-[1.5rem] bg-white px-6 py-5 shadow-[0_2px_12px_rgba(0,0,0,0.08)] xl:absolute xl:w-[28.1rem] ${position}`}
+                x={i < 2 ? -40 : 40}
+                y={0}
+                delay={0.12 * (i % 2)}
+                className={`hover:z-20 xl:absolute xl:w-[28.1rem] ${position}`}
               >
-                <span className="text-[1.9rem] font-light leading-none text-accent">
-                  0{i + 1}
-                </span>
-                <h3 className="mt-2 text-xl font-bold leading-tight text-brand xl:text-2xl xl:leading-7">
-                  {title[0]} <br className="hidden xl:block" />
-                  {title[1]}
-                </h3>
-                <p className="mt-2 text-base leading-snug text-neutral-900 xl:text-base xl:leading-[1.35rem]">
-                  {text}
-                </p>
-              </li>
+                <div
+                  className={`flex h-full flex-col rounded-br-[1.5rem] rounded-tl-[1.5rem] border-b-4 border-transparent bg-white px-6 py-5 shadow-[0_2px_12px_rgba(0,0,0,0.08)] transition duration-300 ease-out hover:-translate-y-2 hover:border-accent hover:shadow-[0_16px_32px_rgba(16,6,148,0.18)] ${position}`}
+                >
+                  <span className="text-[1.9rem] font-light leading-none text-accent">
+                    0{i + 1}
+                  </span>
+                  <h3 className="mt-2 text-xl font-bold leading-tight text-brand xl:text-2xl xl:leading-7">
+                    {title[0]} <br className="hidden xl:block" />
+                    {title[1]}
+                  </h3>
+                  <p className="mt-2 text-base leading-snug text-neutral-900 xl:text-base xl:leading-[1.35rem]">
+                    {text}
+                  </p>
+                </div>
+              </Reveal>
             ))}
           </ol>
 
-          <div className="relative z-10 mt-5 flex flex-col items-center gap-5 rounded-br-[1.5rem] rounded-tl-[1.5rem] bg-[#fafafa] px-6 py-7 text-center shadow-[0_2px_12px_rgba(0,0,0,0.08)] lg:flex-row lg:justify-between lg:text-left xl:absolute xl:left-1/2 xl:top-[34.2rem] xl:mt-0 xl:h-[10.4rem] xl:w-[53.9rem] xl:-translate-x-1/2 xl:px-12">
-            <p className="text-xl font-semibold leading-tight text-black sm:text-2xl xl:text-[1.75rem] xl:leading-[2.1rem]">
+          <div className="relative z-10 mt-5 flex flex-col items-center gap-5 rounded-br-[1.5rem] rounded-tl-[1.5rem] bg-[#fafafa] px-4 py-6 text-center sm:px-6 sm:py-7 shadow-[0_2px_12px_rgba(0,0,0,0.08)] lg:flex-row lg:justify-between lg:text-left xl:absolute xl:left-1/2 xl:top-[34.2rem] xl:mt-0 xl:h-[10.4rem] xl:w-[53.9rem] xl:-translate-x-1/2 xl:px-12">
+            <p className="text-[min(5.4vw,1.25rem)] font-semibold leading-tight text-black sm:text-2xl xl:text-[1.75rem] xl:leading-[2.1rem]">
               Ready to Turn your Study
               <br />
               Abroad Dreams into Reality?
             </p>
-            <div className="text-center">
+            <div className="w-full text-center sm:w-auto">
               <a
                 href="#"
-                className="inline-block whitespace-nowrap rounded-xl bg-accent px-10 py-4 text-lg font-semibold text-white hover:opacity-90 xl:text-xl"
+                className="block whitespace-nowrap rounded-xl bg-accent px-4 py-3.5 text-base font-semibold sm:inline-block sm:px-10 sm:py-4 sm:text-lg text-white hover:opacity-90 xl:text-xl"
               >
                 Book Free Appointment
               </a>
-              <p className="mt-2.5 text-base text-black xl:text-lg">
+              <p className="mt-2.5 whitespace-nowrap text-[min(3.9vw,1rem)] text-black xl:text-lg">
                 ✨ No Fluff. Quick Expert Guidance ✨
               </p>
             </div>

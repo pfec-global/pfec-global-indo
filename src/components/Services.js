@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Reveal from "./Reveal";
 
 const services = [
   {
@@ -37,7 +38,7 @@ export default function Services() {
   return (
     <section className="bg-[#3c33b6] font-poppins">
       <div className="mx-auto grid max-w-[105rem] gap-10 px-4 py-12 sm:px-8 lg:px-12 xl:grid-cols-[1fr_59.8rem] xl:gap-8 xl:py-16">
-        <div className="xl:pt-[3.75rem]">
+        <Reveal x={-40} y={0} className="xl:pt-[3.75rem]">
           <span className="inline-block bg-sun px-6 py-3 text-xl font-bold text-neutral-900 xl:text-2xl">
             Our Services
           </span>
@@ -60,35 +61,39 @@ export default function Services() {
             height={535}
             className="mt-12 hidden h-auto w-[11.25rem] xl:block"
           />
-        </div>
+        </Reveal>
 
         <ul className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3 xl:gap-6">
-          {services.map(({ icon, title, text }) => (
-            <li
-              key={title}
-              className="flex flex-col justify-center rounded-br-[1.5rem] rounded-tl-[1.5rem] bg-white p-6 xl:min-h-[20.125rem]"
-            >
-              <Image
-                src={`/images/icon/${icon}`}
-                alt=""
-                width={128}
-                height={148}
-                className="h-auto w-[3.9rem]"
-              />
-              <h3 className="mt-8 max-w-[15rem] text-xl font-bold leading-tight text-brand xl:text-2xl xl:leading-7">
-                {title}
-              </h3>
-              <p className="mt-2.5 text-base leading-6 text-neutral-500">
-                {text}
-              </p>
-              <a
-                href="#"
-                className="mt-2.5 inline-flex items-center gap-1.5 text-accent hover:underline"
-              >
-                Get Started
-                <span aria-hidden="true">&rsaquo;</span>
-              </a>
-            </li>
+          {services.map(({ icon, title, text }, i) => (
+            <Reveal as="li" y={32} delay={0.08 * i} key={title}>
+              <div className="group flex h-full flex-col justify-center rounded-br-[1.5rem] rounded-tl-[1.5rem] border-b-4 border-transparent bg-white p-6 transition duration-300 ease-out hover:-translate-y-2 hover:border-sun hover:shadow-[0_18px_36px_rgba(0,0,0,0.35)] xl:min-h-[20.125rem]">
+                <Image
+                  src={`/images/icon/${icon}`}
+                  alt=""
+                  width={128}
+                  height={148}
+                  className="h-auto w-[3.9rem] transition-transform duration-300 ease-out group-hover:scale-110"
+                />
+                <h3 className="mt-8 max-w-[15rem] text-xl font-bold leading-tight text-brand xl:text-2xl xl:leading-7">
+                  {title}
+                </h3>
+                <p className="mt-2.5 text-base leading-6 text-neutral-500">
+                  {text}
+                </p>
+                <a
+                  href="#"
+                  className="mt-2.5 inline-flex items-center gap-1.5 text-accent hover:underline"
+                >
+                  Get Started
+                  <span
+                    aria-hidden="true"
+                    className="transition-transform duration-300 group-hover:translate-x-1"
+                  >
+                    &rsaquo;
+                  </span>
+                </a>
+              </div>
+            </Reveal>
           ))}
         </ul>
       </div>

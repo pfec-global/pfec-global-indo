@@ -28,7 +28,7 @@ function Chevron() {
 
 export default function Navbar() {
   return (
-    <header className="sticky top-0 z-50 bg-white">
+    <header className="sticky top-0 z-50 bg-white shadow-[0_4px_20px_rgba(16,6,148,0.08)]">
       <div className="mx-auto flex max-w-[105rem] items-center justify-between gap-4 px-4 py-3 sm:px-8 lg:px-12 xl:py-4">
         <Link href="/" className="shrink-0">
           <Image

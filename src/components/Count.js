@@ -1,6 +1,19 @@
+import CountUp from "./CountUp";
 import Flag, { flags } from "./Flag";
+import Reveal from "./Reveal";
 
-const destinations = ["au", "uk", "nz", "ae", "eu", "de", "us", "ie", "ca", "my"];
+const destinations = [
+  "au",
+  "uk",
+  "nz",
+  "ae",
+  "eu",
+  "de",
+  "us",
+  "ie",
+  "ca",
+  "my",
+];
 
 export default function Count() {
   return (
@@ -8,36 +21,45 @@ export default function Count() {
       <div className="relative">
         <div className="absolute bottom-full left-0 hidden h-12 w-[17.2rem] bg-sun [clip-path:polygon(0_0,92%_0,100%_45%,100%_100%,0_100%)] lg:block" />
 
-        <div className="flex flex-col gap-8 bg-[#fffdf8] px-6 py-8 shadow-[0_4px_24px_rgba(0,0,0,0.12)] sm:px-10 xl:flex-row xl:items-center xl:justify-between xl:gap-6 xl:py-7 xl:pl-[6.2rem] xl:pr-20">
-          <div className="grid font-poppins text-lg text-neutral-800 max-sm:divide-y sm:grid-cols-3 sm:divide-x divide-neutral-400 lg:whitespace-nowrap lg:text-xl xl:flex xl:text-2xl">
-            <div className="py-4 sm:py-2 sm:pr-6 xl:pr-[5.75rem]">
+        <div className="flex flex-col gap-8 bg-[#fffdf8] px-4 py-7 shadow-[0_4px_24px_rgba(0,0,0,0.12)] sm:px-10 xl:flex-row xl:items-center xl:justify-between xl:gap-6 xl:py-7 xl:pl-[6.2rem] xl:pr-20">
+          <div className="grid grid-cols-2 font-poppins text-[15px] text-neutral-800 sm:grid-cols-3 sm:text-lg lg:whitespace-nowrap lg:text-xl xl:flex xl:text-2xl">
+            <div className="pr-3 sm:py-2 sm:pr-6 xl:pr-[5.75rem]">
               <p>Trusted by</p>
-              <p className="font-titan text-3xl text-brand">22,000+</p>
+              <p className="font-titan text-2xl text-brand sm:text-3xl">
+                <CountUp end={22000} suffix="+" />
+              </p>
               <p>Happy Students</p>
             </div>
-            <div className="py-4 sm:px-6 sm:py-2 xl:px-[5.4rem]">
-              <p className="font-titan text-3xl text-brand">19+ Years</p>
-              <p>of Service across</p>
-              <p className="font-bold text-neutral-900">
-                17 Global Offices
+            <div className="border-l border-neutral-400 pl-3 sm:px-6 sm:py-2 xl:px-[5.4rem]">
+              <p className="font-titan text-2xl text-brand sm:text-3xl">
+                <CountUp end={19} suffix="+" /> Years
               </p>
+              <p>of Service across</p>
+              <p className="font-bold text-neutral-900">17 Global Offices</p>
             </div>
-            <div className="py-4 sm:py-2 sm:pl-6 xl:pl-[5.4rem]">
-              <p className="font-titan text-3xl text-brand">550+</p>
+            <div className="col-span-2 mt-5 border-t border-neutral-400 pt-5 text-center sm:col-span-1 sm:mt-0 sm:text-left sm:border-l sm:border-t-0 sm:py-2 sm:pl-6 xl:pl-[5.4rem]">
+              <p className="font-titan text-2xl text-brand sm:text-3xl">
+                <CountUp end={550} suffix="+" />
+              </p>
               <p>Partner Institutions</p>
               <p>Across 11 Destinations</p>
             </div>
           </div>
 
-          <ul className="flex flex-wrap gap-x-3 gap-y-3 xl:w-[29.5rem] xl:shrink-0">
-            {destinations.map((code) => (
-              <li
+          <ul className="grid grid-cols-2 gap-3 sm:flex sm:flex-wrap xl:w-[29.5rem] xl:shrink-0">
+            {destinations.map((code, i) => (
+              <Reveal
+                as="li"
                 key={code}
+                y={0}
+                scale={0}
+                duration={0.3}
+                delay={0.2 + 0.07 * i}
                 className="flex items-center gap-1.5 rounded-lg border border-neutral-200 bg-white px-2.5 py-1 text-[15px] text-neutral-800 shadow-sm xl:text-base"
               >
                 <Flag code={code} className="h-6 w-6" />
                 {flags[code].name}
-              </li>
+              </Reveal>
             ))}
           </ul>
         </div>

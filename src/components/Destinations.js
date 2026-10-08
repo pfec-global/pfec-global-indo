@@ -1,8 +1,10 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Image from "next/image";
 import Flag from "./Flag";
+
+const AUTOPLAY_MS = 3000;
 
 const destinations = [
   { name: "Australia", flag: "au", image: "au.jpg" },
@@ -46,9 +48,20 @@ function ArrowButton({ label, onClick, flip }) {
 }
 
 export default function Destinations() {
-  const [active, setActive] = useState(2);
+  const [active, setActive] = useState(0);
   const count = destinations.length;
+  const [paused, setPaused] = useState(false);
   const move = (step) => setActive((active + step + count) % count);
+
+  // Restarts on every change, so a click or arrow press gets a full interval.
+  useEffect(() => {
+    if (paused) return;
+    const timer = setTimeout(
+      () => setActive((active + 1) % count),
+      AUTOPLAY_MS,
+    );
+    return () => clearTimeout(timer);
+  }, [active, paused, count]);
 
   return (
     <section className="relative overflow-hidden bg-[#f9f9f9] font-poppins">
@@ -72,14 +85,14 @@ export default function Destinations() {
         alt=""
         width={328}
         height={328}
-        className="absolute left-[8.9rem] top-[11.2rem] hidden h-auto w-[8.3rem] xl:block"
+        className="absolute left-[8.9rem] top-[11.2rem] hidden h-auto w-[8.3rem] motion-safe:animate-[spin_18s_linear_infinite] xl:block"
       />
       <Image
         src="/images/circle_line.png"
         alt=""
         width={235}
         height={235}
-        className="absolute right-[6.5rem] top-[6.2rem] hidden h-auto w-[7.5rem] xl:block"
+        className="absolute right-[6.5rem] top-[6.2rem] hidden h-auto w-[7.5rem] motion-safe:animate-[spin_12s_linear_infinite_reverse] xl:block"
       />
       <Image
         src="/images/pfec_logo_line.png"
@@ -104,7 +117,11 @@ export default function Destinations() {
         </p>
 
         {/* Carousel */}
-        <div className="relative mx-auto mt-8 aspect-[238/322] w-[min(58vw,17rem)] xl:mt-10 xl:w-[24.7rem]">
+        <div
+          onMouseEnter={() => setPaused(true)}
+          onMouseLeave={() => setPaused(false)}
+          className="relative mx-auto mt-8 aspect-[238/322] w-[min(58vw,17rem)] xl:mt-10 xl:w-[24.7rem]"
+        >
           {destinations.map(({ name, flag, image }, i) => {
             let offset = (i - active + count) % count;
             if (offset > 2) offset -= count;
@@ -115,16 +132,16 @@ export default function Destinations() {
                 onClick={() => setActive(i)}
                 aria-label={`Study in ${name}`}
                 aria-current={offset === 0}
-                className={`absolute inset-0 cursor-pointer overflow-hidden rounded-xl text-left transition-transform duration-500 ease-out ${slots[offset]}`}
+                className={`group absolute inset-0 cursor-pointer overflow-hidden rounded-xl text-left transition duration-500 ease-out hover:-translate-y-2 hover:shadow-[0_18px_44px_rgba(16,6,148,0.35)] ${slots[offset]}`}
               >
                 <Image
                   src={`/images/county/${image}`}
                   alt=""
                   fill
                   sizes="(min-width: 1280px) 22vw, 17rem"
-                  className="object-cover"
+                  className="object-cover transition-transform duration-700 ease-out group-hover:scale-110"
                 />
-                <span className="absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-black via-black/60 to-transparent" />
+                <span className="absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-black via-black/60 to-transparent transition-[height] duration-500 group-hover:h-2/3" />
                 <span className="absolute bottom-[7%] left-[6%] flex flex-col items-start">
                   <span className="text-lg font-light leading-tight text-white xl:text-[1.75rem]">
                     Study in
