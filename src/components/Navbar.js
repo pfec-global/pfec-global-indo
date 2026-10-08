@@ -1,32 +1,44 @@
+"use client";
+
+import { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 
+// Each link scrolls to the section with that id on the home page.
 const navLinks = [
-  "Study Destinations",
-  "Scholarships",
-  "Universities",
-  "Our Services",
-  "Resources",
+  { label: "Our Services", href: "#services" },
+  { label: "Study Destinations", href: "#destinations" },
+  { label: "Popular Courses", href: "#courses" },
+  { label: "Awards", href: "#awards" },
+  { label: "Testimonials", href: "#testimonials" },
+  { label: "About PFEC", href: "#about" },
 ];
 
-function Chevron() {
-  return (
-    <svg
-      viewBox="0 0 20 12"
-      className="h-2.5 w-4 text-accent"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="2"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      aria-hidden="true"
-    >
-      <path d="M2 2l8 8 8-8" />
-    </svg>
-  );
-}
+// The mobile menu is a <details>; close it once a link inside is chosen.
+const closeMenu = (event) =>
+  event.currentTarget.closest("details").removeAttribute("open");
 
 export default function Navbar() {
+  // The link whose section is under the navbar is highlighted as you scroll.
+  const [active, setActive] = useState(null);
+
+  useEffect(() => {
+    const sections = navLinks
+      .map(({ href }) => document.querySelector(href))
+      .filter(Boolean);
+    const onScroll = () => {
+      const line = window.innerHeight * 0.35;
+      const current = sections.findLast(
+        (section) => section.getBoundingClientRect().top <= line,
+      );
+      const inside = current && current.getBoundingClientRect().bottom > line;
+      setActive(inside ? `#${current.id}` : null);
+    };
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
   return (
     <header className="sticky top-0 z-50 bg-white shadow-[0_4px_20px_rgba(16,6,148,0.08)]">
       <div className="mx-auto flex max-w-[105rem] items-center justify-between gap-4 px-4 py-3 sm:px-8 lg:px-12 xl:py-4">
@@ -42,26 +54,30 @@ export default function Navbar() {
         </Link>
 
         <nav className="hidden flex-1 items-center gap-[3.2rem] pl-[3.2rem] xl:flex">
-          {navLinks.map((link) => (
+          {navLinks.map(({ label, href }) => (
             <a
-              key={link}
-              href="#"
-              className="flex items-center gap-2 whitespace-nowrap font-medium text-neutral-800 hover:text-brand"
+              key={href}
+              href={href}
+              aria-current={active === href ? "true" : undefined}
+              className={`whitespace-nowrap transition-colors hover:text-accent ${
+                active === href
+                  ? "font-semibold text-accent"
+                  : "text-neutral-800"
+              }`}
             >
-              {link}
-              <Chevron />
+              {label}
             </a>
           ))}
         </nav>
 
         <a
-          href="#"
+          href="#consultation"
           className="hidden whitespace-nowrap rounded-xl bg-accent px-4 py-2.5 text-[15px] font-bold xl:text-base text-white hover:opacity-90 sm:block"
         >
           Book a Free Consultation
         </a>
 
-        {/* Mobile menu (no JS needed) */}
+        {/* Mobile menu */}
         <details className="group xl:hidden">
           <summary
             aria-label="Toggle menu"
@@ -76,10 +92,7 @@ export default function Navbar() {
               strokeLinecap="round"
               aria-hidden="true"
             >
-              <path
-                className="group-open:hidden"
-                d="M4 6h16M4 12h16M4 18h16"
-              />
+              <path className="group-open:hidden" d="M4 6h16M4 12h16M4 18h16" />
               <path
                 className="hidden group-open:block"
                 d="M6 6l12 12M18 6L6 18"
@@ -87,18 +100,21 @@ export default function Navbar() {
             </svg>
           </summary>
           <nav className="absolute inset-x-0 top-full flex flex-col border-t border-neutral-200 bg-white px-4 pb-5 shadow-lg sm:px-8">
-            {navLinks.map((link) => (
+            {navLinks.map(({ label, href }) => (
               <a
-                key={link}
-                href="#"
-                className="flex items-center justify-between border-b border-neutral-100 py-3.5 font-medium text-neutral-800"
+                key={href}
+                href={href}
+                onClick={closeMenu}
+                className={`border-b border-neutral-100 py-3.5 font-medium ${
+                  active === href ? "text-accent" : "text-neutral-800"
+                }`}
               >
-                {link}
-                <Chevron />
+                {label}
               </a>
             ))}
             <a
-              href="#"
+              href="#consultation"
+              onClick={closeMenu}
               className="mt-4 rounded-xl bg-accent px-4 py-3 text-center font-bold text-white sm:hidden"
             >
               Book a Free Consultation

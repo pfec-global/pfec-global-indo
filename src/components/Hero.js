@@ -4,7 +4,19 @@ import Reveal from "./Reveal";
 
 const HERO = "/images/hero_banner_imags";
 
-const heroFlags = ["au", "uk", "ca", "nz", "eu", "us", "ie", "de", "my", "ae"];
+const heroFlags = [
+  "au",
+  "uk",
+  "ca",
+  "nz",
+  "eu",
+  "us",
+  "ie",
+  "de",
+  "my",
+  "ae",
+  "jp",
+];
 
 const floatingIcons = [
   {
@@ -68,7 +80,7 @@ export default function Hero() {
               >
                 <Flag
                   code={code}
-                  className="size-[min(7vw,1.75rem)] sm:size-9 xl:size-[2.625rem]"
+                  className="size-[min(6.3vw,1.75rem)] sm:size-9 xl:size-[2.625rem]"
                 />
               </Reveal>
             ))}

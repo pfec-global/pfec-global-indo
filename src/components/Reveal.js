@@ -8,6 +8,7 @@ import * as motion from "motion/react-client";
 export default function Reveal({
   children,
   as = "div",
+  id,
   className,
   delay = 0,
   x = 0,
@@ -16,7 +17,7 @@ export default function Reveal({
   duration = 0.7,
 }) {
   const Tag = motion[as];
-  return (
+  const content = (
     <MotionConfig reducedMotion="user">
       <Tag
         className={className}
@@ -29,4 +30,7 @@ export default function Reveal({
       </Tag>
     </MotionConfig>
   );
+  // The id sits on a wrapper that never moves, so anchor links land in the
+  // right place even before the slide-in has played.
+  return id ? <div id={id}>{content}</div> : content;
 }

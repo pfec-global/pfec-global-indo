@@ -13,6 +13,7 @@ const destinations = [
   "ie",
   "ca",
   "my",
+  "jp",
 ];
 
 export default function Count() {
@@ -21,7 +22,7 @@ export default function Count() {
       <div className="relative">
         <div className="absolute bottom-full left-0 hidden h-12 w-[17.2rem] bg-sun [clip-path:polygon(0_0,92%_0,100%_45%,100%_100%,0_100%)] lg:block" />
 
-        <div className="flex flex-col gap-8 bg-[#fffdf8] px-4 py-7 shadow-[0_4px_24px_rgba(0,0,0,0.12)] sm:px-10 xl:flex-row xl:items-center xl:justify-between xl:gap-6 xl:py-7 xl:pl-[6.2rem] xl:pr-20">
+        <div className="flex flex-col gap-8 bg-[#fffdf8] px-4 py-7 shadow-[0_4px_24px_rgba(0,0,0,0.12)] sm:px-10 xl:flex-row xl:items-center xl:justify-between xl:gap-6 xl:py-7 xl:pl-[6.2rem] xl:pr-12">
           <div className="grid grid-cols-2 font-poppins text-[15px] text-neutral-800 sm:grid-cols-3 sm:text-lg lg:whitespace-nowrap lg:text-xl xl:flex xl:text-2xl">
             <div className="pr-3 sm:py-2 sm:pr-6 xl:pr-[5.75rem]">
               <p>Trusted by</p>
@@ -46,7 +47,7 @@ export default function Count() {
             </div>
           </div>
 
-          <ul className="grid grid-cols-2 gap-3 sm:flex sm:flex-wrap xl:w-[29.5rem] xl:shrink-0">
+          <ul className="grid grid-cols-2 gap-3 sm:flex sm:flex-wrap xl:w-[31.5rem] xl:shrink-0">
             {destinations.map((code, i) => (
               <Reveal
                 as="li"

@@ -11,6 +11,7 @@ const destinations = [
   "Ireland",
   "Canada",
   "Malaysia",
+  "Japan",
 ];
 
 const field =
@@ -18,12 +19,8 @@ const field =
 
 export default function Consultation() {
   return (
-    <section
-      id="consultation"
-      className="overflow-hidden bg-gradient-to-b from-[#050768] to-[#0e0a10]"
-    >
+    <section className="overflow-hidden bg-gradient-to-b from-[#050768] to-[#0e0a10]">
       <div className="mx-auto max-w-[105rem] px-4 py-12 text-center sm:px-8 lg:px-12 xl:py-[4.3rem]">
-        
         <p className="mt-3 font-poppins text-lg text-[#b9b5e8] xl:text-[1.45rem]">
           What are you Waiting For?
         </p>

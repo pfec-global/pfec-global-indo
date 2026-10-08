@@ -70,6 +70,17 @@
 /* Desktop is drawn on a 1900px Figma frame: scale the root font size with the
    viewport (16px at 1900px) so every rem-based size keeps the Figma proportions. */
 @layer base {
+  /* Footer and nav links glide to their section, stopping below the sticky navbar. */
+  html {
+    scroll-padding-top: 5.5rem;
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    html {
+      scroll-behavior: smooth;
+    }
+  }
+
   @media (width >= 1280px) {
     html {
       font-size: min(16px, 0.8421vw);

@@ -12,6 +12,12 @@ const destinations = [
   { name: "Canada", flag: "ca", image: "ca.jpg" },
   { name: "USA", flag: "us", image: "usa.jpg" },
   { name: "Ireland", flag: "ie", image: "airland.jpg" },
+  { name: "UK", flag: "uk", image: "uk.jpg" },
+  { name: "Europe", flag: "eu", image: "europ.jpg" },
+  { name: "Germany", flag: "de", image: "germany.jpg" },
+  { name: "Malaysia", flag: "my", image: "malaysia.jpg" },
+  { name: "Dubai", flag: "ae", image: "dubai.jpg" },
+  { name: "Japan", flag: "jp", image: "japan.jpg" },
 ];
 
 // Card placement by distance from the active (centre) card.
@@ -22,6 +28,12 @@ const slots = {
   1: "z-20 translate-x-[85%] scale-[0.8]",
   2: "z-10 translate-x-[148%] scale-[0.7]",
 };
+
+// Cards further out wait, invisible, behind the outermost visible card.
+const hiddenLeft =
+  "pointer-events-none z-0 -translate-x-[185%] scale-[0.6] opacity-0";
+const hiddenRight =
+  "pointer-events-none z-0 translate-x-[185%] scale-[0.6] opacity-0";
 
 function ArrowButton({ label, onClick, flip }) {
   return (
@@ -124,7 +136,7 @@ export default function Destinations() {
         >
           {destinations.map(({ name, flag, image }, i) => {
             let offset = (i - active + count) % count;
-            if (offset > 2) offset -= count;
+            if (offset > count / 2) offset -= count;
             return (
               <button
                 key={name}
@@ -132,7 +144,9 @@ export default function Destinations() {
                 onClick={() => setActive(i)}
                 aria-label={`Study in ${name}`}
                 aria-current={offset === 0}
-                className={`group absolute inset-0 cursor-pointer overflow-hidden rounded-xl text-left transition duration-500 ease-out hover:-translate-y-2 hover:shadow-[0_18px_44px_rgba(16,6,148,0.35)] ${slots[offset]}`}
+                aria-hidden={Math.abs(offset) > 2}
+                tabIndex={Math.abs(offset) > 2 ? -1 : 0}
+                className={`group absolute inset-0 cursor-pointer overflow-hidden rounded-xl text-left transition duration-500 ease-out hover:-translate-y-2 hover:shadow-[0_18px_44px_rgba(16,6,148,0.35)] ${slots[offset] ?? (offset < 0 ? hiddenLeft : hiddenRight)}`}
               >
                 <Image
                   src={`/images/county/${image}`}

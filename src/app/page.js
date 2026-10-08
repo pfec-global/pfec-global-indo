@@ -25,31 +25,31 @@ export default function Home() {
         <Reveal delay={0.15}>
           <Count />
         </Reveal>
-        <Reveal>
+        <Reveal id="services">
           <Services />
         </Reveal>
         <Reveal>
           <Aspirations />
         </Reveal>
-        <Reveal>
+        <Reveal id="destinations">
           <Destinations />
         </Reveal>
-        <Reveal>
+        <Reveal id="courses">
           <FindCourse />
         </Reveal>
-        <Reveal>
+        <Reveal id="awards">
           <Awards />
         </Reveal>
-        <Reveal>
+        <Reveal id="affiliations">
           <Affiliations />
         </Reveal>
-        <Reveal>
+        <Reveal id="testimonials">
           <Testimonials />
         </Reveal>
-        <Reveal>
+        <Reveal id="about">
           <Journey />
         </Reveal>
-        <Reveal>
+        <Reveal id="consultation">
           <Consultation />
         </Reveal>
       </main>
